@@ -213,6 +213,11 @@ h1 {
     transform: translateX(15px);
 }
 
+.tab-btn:active {
+    transition: transform 0.1s ease, z-index 0.2s ease;
+    transform: translateX(0);
+}
+
 .tab-nav li.selected {
     z-index: 99;
 }
@@ -426,7 +431,7 @@ h1 {
 /* PROJECT GRID */
 
 .sect2 {
-    width: 80%;
+    width: 90%;
     margin: 1.5rem auto;
 }
 
@@ -442,92 +447,22 @@ h1 {
 
 /* grid code*/
 
-.sect2 {
-    width: 80%;
-    margin: 1.5rem auto;
-}
-
-.sect2 h2 {
-    margin: 0 0 1.5rem 0;
-    line-height: 0.8; /* ~25.6px if your base font is 32px */
-    letter-spacing: -1.6px;
-    font-size: 32px;
-    text-align: center;
-    color: #E9E7E1;
-}
-
-/* ───────────────────────────────────────────────────────
-   SECTION: Grid container
-   We’re using CSS columns for a masonry effect.
-─────────────────────────────────────────────────────── */
 .grid {
-    column-count: 3;        /* three columns */
-    column-gap: 2rem;       /* space between columns */
+    column-count: 3; /* Number of columns */
+    column-gap: 2rem; /* Horizontal gap */
+    margin: 1.5rem auto; /* Center the grid */
+    max-width: 90%; /* Optional: Constrain the grid width */
 }
 
-/* Prevent each item from splitting across columns */
 .grid-item {
-    break-inside: avoid;
-    margin-bottom: 2rem;
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    background-color: #111; /* fallback while the image loads */
-    transition: transform 0.3s ease;
+    break-inside: avoid; /* Prevent breaking inside columns */
+    margin-bottom: .5rem; /* Vertical gap */
+    border-radius: 15px; /* Rounded corners */
+    overflow: hidden; /* For contained content */
+    position: relative; /* Keep items positioned correctly */
 }
 
-/* Ensure the image spans the full width of its container */
-.grid-item img {
-    width: 100%;
-    display: block;
-}
 
-/* Optional title below each image */
-.project-title {
-    margin: 0.5rem 0;
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #E9E7E1;
-}
-
-/* ───────────────────────────────────────────────────────
-   3) Hover Effects (optional: you can remove if you don’t want any)
-   • You can add `.grow` or `.reveal-text` later in Sanity when
-     you define behaviors. For now, this just shows how to add effects.
-─────────────────────────────────────────────────────── */
-/* Grow slightly on hover */
-.grid-item.grow:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-/* Reveal the data-text overlay if you later add `reveal-text` class */
-.grid-item.reveal-text::after {
-    content: attr(data-text);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0.5rem;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    font-size: 0.9rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    text-align: center;
-}
-
-.grid-item.reveal-text:hover::after {
-    opacity: 1;
-    cursor: pointer;
-}
-
-/* ───────────────────────────────────────────────────────
-   4) Responsive Breakpoints
-   • 2 columns on medium screens (≤ 1199px)
-   • 1 column on small/mobile (≤ 767px)
-─────────────────────────────────────────────────────── */
 @media screen and (max-width: 1199px) {
     .grid {
         column-count: 2;
@@ -539,6 +474,80 @@ h1 {
         column-count: 1;
     }
 }
+
+/* ───────────────────────────────────────────────────────
+   SECTION: Grid container
+   We’re using CSS columns for a masonry effect.
+─────────────────────────────────────────────────────── */
+/*.grid {*/
+/*    column-count: 3;        !* three columns *!*/
+/*    column-gap: 2rem;       !* space between columns *!*/
+/*}*/
+
+/* Prevent each item from splitting across columns */
+/*.grid-item {*/
+/*    break-inside: avoid;*/
+/*    margin-bottom: 2rem;*/
+/*    position: relative;*/
+/*    border-radius: 15px;*/
+/*    overflow: hidden;*/
+/*    background-color: #111; !* fallback while the image loads *!*/
+/*    transition: transform 0.3s ease;*/
+/*}*/
+
+/*!* Ensure the image spans the full width of its container *!*/
+/*.grid-item img {*/
+/*    width: 100%;*/
+/*    display: block;*/
+/*}*/
+
+/*!* Optional title below each image *!*/
+/*.project-title {*/
+/*    margin: 0.5rem 0;*/
+/*    text-align: center;*/
+/*    font-size: 1.1rem;*/
+/*    font-weight: bold;*/
+/*    color: #E9E7E1;*/
+/*}*/
+
+/* ───────────────────────────────────────────────────────
+   3) Hover Effects (optional: you can remove if you don’t want any)
+   • You can add `.grow` or `.reveal-text` later in Sanity when
+     you define behaviors. For now, this just shows how to add effects.
+─────────────────────────────────────────────────────── */
+/* Grow slightly on hover */
+/*.grid-item.grow:hover {*/
+/*    transform: scale(1.05);*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*!* Reveal the data-text overlay if you later add `reveal-text` class *!*/
+/*.grid-item.reveal-text::after {*/
+/*    content: attr(data-text);*/
+/*    position: absolute;*/
+/*    bottom: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    padding: 0.5rem;*/
+/*    background: rgba(0, 0, 0, 0.6);*/
+/*    color: #fff;*/
+/*    font-size: 0.9rem;*/
+/*    opacity: 0;*/
+/*    transition: opacity 0.3s ease;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.grid-item.reveal-text:hover::after {*/
+/*    opacity: 1;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/* ───────────────────────────────────────────────────────
+   4) Responsive Breakpoints
+   • 2 columns on medium screens (≤ 1199px)
+   • 1 column on small/mobile (≤ 767px)
+─────────────────────────────────────────────────────── */
+
 
 
 

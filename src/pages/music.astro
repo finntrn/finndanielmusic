@@ -1,16 +1,8 @@
-<!-- -&#45;&#45;-->
-<!--import type { SanityDocument } from "@sanity/client";-->
-<!--import { sanityClient } from "sanity:client";-->
-
-<!--const POSTS_QUERY = `*[-->
-<!--  _type == "project"-->
-<!--  && defined(slug.current)-->
-<!--]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt}`;-->
-
-<!--const projects = await sanityClient.fetch<SanityDocument[]>(POSTS_QUERY);-->
-<!-- -&#45;&#45;-->
-
-<!DOCTYPE html>
+---
+import type { SanityDocument } from "@sanity/client";
+import { sanityClient } from "sanity:client";
+import { ClientRouter } from "astro:transitions";
+---
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
@@ -32,7 +24,7 @@
 
 	<div id="nav-trigger"></div>
 	<div id="nav-spacer"></div>
-	<nav class="tab-nav">
+	<nav transition:name="navtrans" class="tab-nav">
 		<ul>
 			<li>
 				<a href="/" class="tab-btn" data-label="home" data-target="home">

@@ -1,6 +1,7 @@
 ---
 import type { SanityDocument } from "@sanity/client";
 import { sanityClient } from "sanity:client";
+import { ClientRouter } from "astro:transitions";
 
 const POSTS_QUERY = `*[
   _type == "project"
@@ -26,12 +27,15 @@ const projects = await sanityClient.fetch<SanityDocument[]>(POSTS_QUERY);
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Konkhmer+Sleokchher&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
 <header>
 
 	<div id="nav-trigger"></div>
 	<div id="nav-spacer"></div>
+	<!--<ClientRouter client:load>-->
 	<nav class="tab-nav">
 		<ul>
 			<li class="selected">
@@ -61,6 +65,7 @@ const projects = await sanityClient.fetch<SanityDocument[]>(POSTS_QUERY);
 		</ul>
 	</nav>
 	<h1>Finn Toornent</h1>
+	<!--</ClientRouter>-->
 
 	<!--    </div>-->
 </header>

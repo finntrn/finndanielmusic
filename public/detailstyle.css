@@ -1,56 +1,31 @@
-.grid-item {
-    break-inside: avoid;
-    margin-bottom: 2rem;
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    background-color: #111; /* fallback while the image loads */
-    transition: transform 0.3s ease;
-}
 
-/* Ensure the image spans the full width of its container */
+/* Image Styling */
 .grid-item img {
     width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Optional Hover Effects */
+/*.grid-item:hover {*/
+/*    transform: scale(1.05);*/
+/*    cursor: pointer;*/
+/*}*/
+
+
+/* Video Styling */
+.grid-item .video-block {
+    width: 100%;
+    height: auto;
     display: block;
 }
 
-/* Optional title below each image */
-.project-title {
-    margin: 0.5rem 0;
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: bold;
+/* Optional Text Content Styling */
+.grid-item p {
+    margin: 0;
+    padding: 1em;
     color: #E9E7E1;
-}
-
-/* ───────────────────────────────────────────────────────
-   3) Hover Effects (optional: you can remove if you don’t want any)
-   • You can add `.grow` or `.reveal-text` later in Sanity when
-     you define behaviors. For now, this just shows how to add effects.
-─────────────────────────────────────────────────────── */
-/* Grow slightly on hover */
-.grid-item.grow:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-/* Reveal the data-text overlay if you later add `reveal-text` class */
-.grid-item.reveal-text::after {
-    content: attr(data-text);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0.5rem;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    font-size: 0.9rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    text-align: center;
-}
-
-.grid-item.reveal-text:hover::after {
-    opacity: 1;
-    cursor: pointer;
+    font-size: 1rem;
+    text-align: left;
+    background-color: #1e0835;
 }

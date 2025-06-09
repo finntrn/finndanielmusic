@@ -6,6 +6,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
+
   integrations: [
     sanity({
       projectId: 'uzpp961j',
@@ -14,4 +15,5 @@ export default defineConfig({
     }),
     react(), // Required if embedding Sanity Studio
   ],
+  
 });

@@ -50,4 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+    
+    
 });
+
+// GRID PLACEMENT

@@ -1,31 +1,19 @@
 ---
-import type { SanityDocument } from "@sanity/client";
-import { sanityClient } from "sanity:client";
-import imageUrlBuilder from "@sanity/image-url";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { PortableText } from "astro-portabletext";
+import { sanityClient } from '../../lib/sanity';
+import { urlFor } from '../../lib/sanity';
+import { PortableText } from '@portabletext/react';
 
-// Fetch the project data
-const POST_QUERY = `*[_type == "project" && slug.current == $slug][0]`;
-const project = await sanityClient.fetch<SanityDocument>(POST_QUERY, { slug: Astro.params.slug });
+// Define the GROQ query for project data
+const PROJECT_QUERY = `
+  *[_type == "project" && slug.current == $slug][0]{
+    title,
+    details
+  }
+`;
 
-if (!project) {
-    throw new Error(`No project found for slug: ${Astro.params.slug}`);
-}
-
-// Generate image URLs
-const { projectId, dataset } = sanityClient.config();
-const urlFor = (source: SanityImageSource) =>
-    projectId && dataset
-        ? imageUrlBuilder({ projectId, dataset }).image(source)
-        : null;
-
-const projectImageUrl = project.thumbnail
-    ? urlFor(project.thumbnail)?.width(550).height(310).url()
-    : null;
-
-// Static paths generation
+// Export `getStaticPaths` for static route generation
 export async function getStaticPaths() {
+
     const SLUGS_QUERY = `*[_type == "project" && defined(slug.current)]{
         "slug": slug.current
     }`;
@@ -35,11 +23,30 @@ export async function getStaticPaths() {
         params: { slug: slug.slug },
     }));
 }
+
+// Fetch the project data using the slug
+const { slug } = Astro.params;
+const project = await sanityClient.fetch(PROJECT_QUERY, { slug });
+
+console.log(slug);
+console.log(project);
+
+// Handle missing project
+if (!project) {
+    throw new Error(`Project with slug "${slug}" not found.`);
+}
+
+// Destructure project data for convenience
+const { title, details } = project;
 ---
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <title>Finn Toornent</title>
     <link href="/style.css" rel="stylesheet" />
+    <link href="/detailstyle.css" rel="stylesheet" />
     <!-- we’ll remove script.js’s grid-populating logic in favor of Astro’s -->
     <script src="/script.js" defer></script>
 
@@ -50,12 +57,15 @@ export async function getStaticPaths() {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Konkhmer+Sleokchher&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
 <header>
 
     <div id="nav-trigger"></div>
     <div id="nav-spacer"></div>
+    <!--<ClientRouter client:load>-->
     <nav class="tab-nav">
         <ul>
             <li class="selected">
@@ -67,35 +77,30 @@ export async function getStaticPaths() {
                 </a>
             </li>
             <li>
-                <button class="tab-btn" data-label="music" data-target="music">
+                <a href="/music/" class="tab-btn" data-label="music" data-target="music">
                     <svg class="tab-outline" viewBox="0 0 162 42" xmlns="http://www.w3.org/2000/svg">
                         <path class="tab-outline-path default" d="M1 41.5L13 10C15 4 21 1 27 1H135C141 1 147 4 149 10L161 41.5Z" stroke="#E9E7E1" fill="none" stroke-width="1.5"/>
                         <path class="tab-outline-path selected-outline" d="M1 41.5L13 10C15 4 21 1 27 1H135C141 1 147 4 149 10L161 41.5" stroke="#E9E7E1" fill="none" stroke-width="1.5"/>
                     </svg>
-                </button>
+                </a>
             </li>
             <li>
-                <button class="tab-btn" data-label="contact" data-target="contact">
+                <a href="/contact/" class="tab-btn" data-label="contact" data-target="contact">
                     <svg class="tab-outline" viewBox="0 0 162 42" xmlns="http://www.w3.org/2000/svg">
                         <path class="tab-outline-path default" d="M1 41.5L13 10C15 4 21 1 27 1H135C141 1 147 4 149 10L161 41.5Z" stroke="#E9E7E1" fill="none" stroke-width="1.5"/>
                         <path class="tab-outline-path selected-outline" d="M1 41.5L13 10C15 4 21 1 27 1H135C141 1 147 4 149 10L161 41.5" stroke="#E9E7E1" fill="none" stroke-width="1.5"/>
                     </svg>
-                </button>
+                </a>
             </li>
         </ul>
     </nav>
     <h1>Finn Toornent</h1>
-    <!--{project.title}-->
-    
+    <!--</ClientRouter>-->
+
+    <!--    </div>-->
 </header>
-
 <main>
-
-
-
-
     <!--    BACKGROUND-->
-
     <section class="background">
         <div id="circle1">
             <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1800" viewBox="-1200 -1200 2400 2400">
@@ -136,7 +141,6 @@ export async function getStaticPaths() {
         </div>
 
     </section>
-
 
     <!--    HOMEPAGE-->
     <div class="page active" id="home">
@@ -186,21 +190,53 @@ export async function getStaticPaths() {
 
             <section class="sect2">
                 <h2>{project.title}</h2>
-                {projectImageUrl && <img src={projectImageUrl} alt={project.title} />}
-                <PortableText value={project.details} />
+                <div class="grid">
+                    {details.map((block, index) => (
+                            <div key={index}>
+
+                                <!--IMAGE BLOCK-->
+                                <div class="grid-item">
+                                    {block._type === 'imageBlock' && (
+                                        <img class="grid-item" src={urlFor(block.image).url()} alt="Image description" />
+                                )}
+                                </div>
+                                
+
+                                <!--TEXT BLOCK-->
+                                <div class="grid-item">
+                                    {block._type === 'textBlock' && (
+                                            <PortableText class="grid-item text-block" value={block.content} />
+                                    )}
+                                </div>
+                                
+
+                                <!--VIDEO BLOCK-->
+                                <div class="grid-item">
+                                    {block._type === 'videoBlock' && (
+                                            <div class="grid-item video-block">
+                                                {/* Embed video */}
+                                                <iframe
+                                                        src={block.url}
+                                                        title="Video"
+                                                        width="100%"
+                                                        height="400"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowFullScreen
+                                                ></iframe>
+
+                                                {/* Optional caption */}
+                                                {block.caption && <p className="caption">{block.caption}</p>}
+                                            </div>
+                                    )}
+                                </div>
+                                
+                            </div>
+                    ))}
+                </div>
             </section>
-
-            <!--    MODAL SECTION-->
-
-            
         </div>
-
     </div>
-
 </main>
 
 </body>
-
-<div>
-    
-</div>
+</html>
