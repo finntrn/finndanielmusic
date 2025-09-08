@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Finn Daniel</title>
+    <link href="/style.css" rel="stylesheet" />
+    <!-- we’ll remove script.js’s grid-populating logic in favor of Astro’s -->
+    <script src="/script.js?v=1" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Konkhmer+Sleokchher&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+
+    <div id="nav-trigger"></div>
+    <div id="nav-spacer"></div>
+    <nav class="tab-nav">
+        <ul>
+            <li>
+                <a href="../index.html" class="tab-btn" data-label="home" data-target="home">
+                    <svg class="tab-outline" viewBox="0 0 162 42" xmlns="http://www.w3.org/2000/svg">
+                        <path class="tab-outline-path default" d="M1 41.5L13 10C15 4 21 1 27 1H135C141 1 147 4 149 10L161 41.5Z" stroke="#E9E7E1" fill="none" stroke-width="1.5"/>
+                        <path class="tab-outline-path selected-outline" d="M1 41.5L13 10C15 4 21 1 27 1H135C141 1 147 4 149 10L161 41.5" stroke="#E9E7E1" fill="none" stroke-width="1.5"/>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="./graphics.html" class="tab-btn" data-label="graphics" data-target="music">
+                    <svg class="tab-outline" viewBox="0 0 162 42" xmlns="http://www.w3.org/2000/svg">
+                        <path class="tab-outline-path default" d="M1 41.5L13 10C15 4 21 1 27 1H135C141 1 147 4 149 10L161 41.5Z" stroke="#E9E7E1" fill="none" stroke-width="1.5"/>
+                        <path class="tab-outline-path selected-outline" d="M1 41.5L13 10C15 4 21 1 27 1H135C141 1 147 4 149 10L161 41.5" stroke="#E9E7E1" fill="none" stroke-width="1.5"/>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="tab-btn" data-label="contact" data-target="contact">
+                    <svg class="tab-outline" viewBox="0 0 162 42" xmlns="http://www.w3.org/2000/svg">
+                        <path class="tab-outline-path default" d="M1 41.5L13 10C15 4 21 1 27 1H135C141 1 147 4 149 10L161 41.5Z" stroke="#E9E7E1" fill="none" stroke-width="1.5"/>
+                        <path class="tab-outline-path selected-outline" d="M1 41.5L13 10C15 4 21 1 27 1H135C141 1 147 4 149 10L161 41.5" stroke="#E9E7E1" fill="none" stroke-width="1.5"/>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <h1>Finn Daniel</h1>
+
+    <!--    </div>-->
+</header>
+<main>
+
+
+
+
+    <!--    BACKGROUND-->
+
+    <section class="background">
+        <div id="circle1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1800" viewBox="-1200 -1200 2400 2400">
+                <defs>
+                    <filter id="blur1" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="200"/>
+                    </filter>
+                    <filter id='noiseFilter'>
+                        <feTurbulence
+                                type='fractalNoise'
+                                baseFrequency='0.65'
+                                numOctaves='3'
+                                stitchTiles='stitch'/>
+                    </filter>
+                </defs>
+                <circle cx="0" cy="0" r="400" fill="#1F186D" filter="url(#blur1)"/>
+            </svg>
+        </div>
+        <div id="circle2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1800" viewBox="-1200 -1200 2400 2400">
+                <defs>
+                    <filter id="blur1" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="200"/>
+                    </filter>
+                </defs>
+                <circle cx="0" cy="0" r="400" fill="#63186D" filter="url(#blur1)"/>
+            </svg>
+        </div>
+        <div id="circle3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1800" viewBox="-1200 -1200 2400 2400">
+                <defs>
+                    <filter id="blur1" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="200"/>
+                    </filter>
+                </defs>
+                <circle cx="0" cy="0" r="400" fill="#18646D" filter="url(#blur1)"/>
+            </svg>
+        </div>
+
+    </section>
+
+
+    <!--    HOMEPAGE-->
+    <div class="page active" id="home">
+        <div class="home-content">
+            <!--    SECTION 1-->
+
+            <div class="sect1">
+                <section class="leftsect">
+                    <h2>who?</h2>
+                    <p>Do you enjoy <b>the beach</b>? Do you enjoy the <b>warm sounds</b> provided by the<b> alt eighties? </b>
+                        <br><br>
+                        Take a quick gander at <b>Finn Daniel</b> and see if this is what was missing in <b>your life</b>.
+                        Being a <b>musician</b> second and a <b>self-proclaimed connoisseur</b> of said music first, I might just know how to tickle that scratch you didn't even know was there.
+                        <br><br>
+                        Enough talking now. Let's let the <b>music</b> do the talking.
+                        Stick around for a bit and <b>enjoy the vibes</b>. Or not. I can't tell you what to do.
+                        <br><br>
+                        (Ps: I'm a graphic designer as well but don't let that distract you.)
+                    </p>
+                </section>
+                <div></div>
+                <section class="rightsect">
+                    <h2>currently enjoying:</h2>
+                    <ul>
+                        <li>
+                            <img src="https://i.scdn.co/image/ab67616d0000b2734d070fdf58fad8c54c5beb85" alt="">
+                            <h3>Submarine</h3>
+                            <p>by The Marías</p>
+                        </li>
+                        <li>
+                            <img src="https://i.scdn.co/image/ab67616d0000b2735b97ef03e581f7ab1cea9c48" alt="">
+                            <h3>Twenty Twenty</h3>
+                            <p>by Djo</p>
+                        </li>
+                        <li>
+                            <img src="https://i.scdn.co/image/ab67616d0000b27327cc8b0ed297111f53009772" alt="">
+                            <h3>Unknown Pleasures</h3>
+                            <p>by Joy Division</p>
+                        </li>
+                        <li>
+                            <img src="https://media.s-bol.com/Q8zLZWEv3o6l/Z6mrEA8/538x840.jpg" alt="">
+                            <h3>Goodnight Tokyo</h3>
+                            <p>by Atsuhiro Yoshida</p>
+                        </li>
+
+                    </ul>
+                </section>
+            </div>
+
+
+            <!--    CONTACT PAGE-->
+
+            <div class="page" id="contact"></div>
+
+            <section class="comingsoon"><h2>email: finndanielmusic@gmail.com</h2></section>
+
+</main>
+<footer></footer>
+
+</body>
+</html>

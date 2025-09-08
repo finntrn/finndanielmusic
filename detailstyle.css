@@ -1,0 +1,61 @@
+
+
+
+/* Optional Hover Effects */
+/*.grid-item:hover {*/
+/*    transform: scale(1.05);*/
+/*    cursor: pointer;*/
+/*}*/
+
+
+/* Video Styling */
+.grid-item .video-block {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Optional Text Content Styling */
+.grid-item p {
+    margin: 0;
+    padding: 1em;
+    color: #E9E7E1;
+    font-size: 1.3rem;
+    text-align: left;
+    letter-spacing: -0.04rem;
+    border-radius: 10px;
+    border: solid #E9E7E1 1px;
+}
+
+#detailnav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#detailnav a {
+    text-decoration: none;
+    color: #E9E7E1;
+    font-size: 1.3rem;
+    justify-self: start;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#detailnav a div {
+    aspect-ratio: 1 / 1;
+    height: 2rem;
+    background-color: #E9E7E1;
+    border-radius: 50%;
+}
+
+#detailnav a div svg {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    height: 1.1rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    fill: #030027;
+}
